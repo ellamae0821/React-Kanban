@@ -4,6 +4,8 @@ module.exports = function(sequelize, DataTypes){
       type: DataTypes.STRING,
       allowNull: false,
     }
+  },{
+    timestamps: false
   })
 /*    priority_type:{
       type: DataTypes.STRING,
@@ -44,10 +46,20 @@ module.exports = function(sequelize, DataTypes){
   })*/
 
   Card.associate = function(models){
-    Card.belongsTo(models.user, {foreignKey: 'created_by', constraints: false}),
-    Card.belongsTo(models.user, {foreignKey: 'assigned_to', constraints: false}),
-    Card.hasOne(models.status, {foreignKey: 'status_id', constraints: false}),
-    Card.hasOne(models.priority, {foreignKey: 'priority_id', constraints: false})
+    Card.belongsTo(models.user, {foreignKey: {
+      as: 'creator',
+      name: 'created_by',
+      allowNull: false}}),
+    Card.belongsTo(models.user, {foreignKey: {
+      as: 'assignee',
+      name: 'assigned_to',
+      allowNull: false}}),
+    Card.belongsTo(models.status, {foreignKey: {
+      name: 'status_id',
+      allowNull: false}}),
+    Card.belongsTo(models.priority, {foreignKey: {
+      name:'priority_id',
+      allowNull: false}})
   }
   return Card;
 }

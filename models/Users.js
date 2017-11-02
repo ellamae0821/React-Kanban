@@ -4,15 +4,18 @@ module.exports = function(sequelize, DataTypes){
       type: DataTypes.STRING,
       unique: true,
       allowNull: false
-    },
-    //tableName: 'users'
+    }
+  },{
+    timestamps: false
   });
 
   User.associate = function(models){
     User.hasMany(models.card, {
-      foreignKey: 'creator_to'
+      as:'creator',
+      foreignKey: 'created_by'
     }),
     User.hasMany(models.card, {
+      as: 'assignee',
       foreignKey: 'assigned_to'
     })
   }
@@ -20,7 +23,3 @@ module.exports = function(sequelize, DataTypes){
 }
 
 
-
-
-  //card has one status
-  //status belongto many cards

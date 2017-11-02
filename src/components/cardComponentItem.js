@@ -1,19 +1,22 @@
 import React from 'react';
 
-const cardComponentItem = ({id, title, priority, status,  createdBy, assignedTo}) => {
+const CardComponentItem = ({id, title, priority, status,  created_by, assigned_to}) => {
   return (
 
-  <div className='eachBook'>
-    <ol>
+  <div className='eachCard'>
+    <ol className='eachCardoL'>
       <b>Card-Id:</b>{id} <br/>
       <b>Title:</b>{title} <br/>
+      <b>Created By:</b>{created_by} <br/>
+      <b>Assigned To:</b>{assigned_to} <br/>
       <b>Priority:</b>{priority} <br/>
       <b>Status:</b>{status} <br/>
-      <b>Created By:</b>{createdBy} <br/>
-      <b>Assigned To:</b>{assignedTo} <br/>
     </ol>
   </div>
   )
 }
 
-export default cardComponentItem;
+
+
+
+export default CardComponentItem;

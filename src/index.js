@@ -3,6 +3,23 @@ import ReactDOM from 'react-dom';
 import './containers/App/styles.css';
 import App from './containers/App';
 import registerServiceWorker from './registerServiceWorker';
+import {createStore, applyMiddleware} from 'redux';
+import {Provider} from 'react-redux'
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import thunk from 'redux-thunk';
+import reducers from './reducers';
+
+
+const store = createStore(
+  reducers,
+  applyMiddleware(thunk)
+);
+
+ReactDOM.render(
+  <Provider store={store}>
+    <App/>
+  </Provider>,
+  document.getElementById('root')
+);
+
 registerServiceWorker();

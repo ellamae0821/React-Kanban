@@ -1,10 +1,5 @@
-import{} from '../actions/books';
-
-const initialState - {
-  cards: []
-}
-
-
-const reducers = (state = initialState, actions) => {
-  switchcase
-}
+import {combineReducers} from 'redux';
+import cardList from './cardList.js';
+export default combineReducers({
+  cardList
+});
