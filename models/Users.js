@@ -9,7 +9,7 @@ module.exports = function(sequelize, DataTypes){
     timestamps: false
   });
 
-  User.associate = function(models){
+/*  User.associate = function(models){
     User.hasMany(models.card, {
       as:'creator',
       foreignKey: 'created_by'
@@ -18,7 +18,7 @@ module.exports = function(sequelize, DataTypes){
       as: 'assignee',
       foreignKey: 'assigned_to'
     })
-  }
+  }*/
   return User;
 }
 

@@ -18,10 +18,10 @@ class NewCardForm extends Component {
     handleSubmit(event){
       event.preventDefault();
       let newCard = {
-        titleInput:this.state.titleInput,
-        priorityInput: this.state.priorityInput,
-        createdByInput: this.state.createdByInput,
-        assignedToInput: this.state.assignedToInput
+        title:this.state.titleInput,
+        priority: this.state.priorityInput,
+        created_by: this.state.createdByInput,
+        assigned_to: this.state.assignedToInput
       }
       this.props.addCard(newCard)
 
@@ -67,9 +67,9 @@ class NewCardForm extends Component {
             <p>Title:</p> <input type="text" placeholder="title" value={this.state.titleInput} onChange={this.handleChangeTitle.bind(this)}/><br/>
             <p>Priority:</p><select name="priority"/*value={this.state.priorityInput} */ onChange={this.handleChangePriority.bind(this)}>
               <option value={this.state.priorityInput}>Low</option>
-              <option value="Medium">Medium</option>
-              <option value="High">High</option>
-              <option value="Blocker">Blocker</option>
+              <option value={this.state.priorityInput}>Medium</option>
+              <option value={this.state.priorityInput}>High</option>
+              <option value={this.state.priorityInput}>Blocker</option>
             </select><br/>
             <p>Created By</p><input type="text" placeholder="Created By" value={this.state.createdByInput} onChange={this.handleChangeCreatedBy.bind(this)}/><br/>
             <h4>Assigned To</h4><input type="text" placeholder="Assigned To" value={this.state.assignedToInput} onChange={this.handleChangeAssignedToInput.bind(this)}/><br/>

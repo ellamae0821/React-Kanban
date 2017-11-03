@@ -6,7 +6,7 @@ const Priority = models.priority;
 const Status = models.status;
 const User = models.user;
 const Sequelize = models.Sequelize;
-
+/*
 router.get('/', (req, res) => {
   return Card.findAll({
     include: [
@@ -39,20 +39,20 @@ router.post('/', (req, res) => {
 });
 
 module.exports = router;
+*/
 
-/*
 router.get('/', (req, res) => {
   return Card.findAll({
     include: [
       {
+        model: User/*,
+        as: 'creator',
+        attributes: ['id', 'name']*/
+      }, /*{
         model: User,
-        as: 'created_by',
+        as: 'assignee',
         attributes: ['id', 'name']
-      }, {
-        model: User,
-        as: 'assigned_to',
-        attributes: ['id', 'name']
-      }, {
+      },*/ {
         model: Status
       }, {
         model: Priority
@@ -63,11 +63,11 @@ router.get('/', (req, res) => {
     res.json(cards);
   })
   .catch((err) => {
-    throw new Error('Unable to get database!!!');
+    throw new Error(err);
   })
 })
 
-module.exports = router;*/
+module.exports = router;
 
 /*
 router.get('/', (req, res) => {

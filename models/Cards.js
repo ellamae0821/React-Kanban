@@ -46,14 +46,20 @@ module.exports = function(sequelize, DataTypes){
   })*/
 
   Card.associate = function(models){
-    Card.belongsTo(models.user, {foreignKey: {
-      as: 'creator',
-      name: 'created_by',
-      allowNull: false}}),
-    Card.belongsTo(models.user, {foreignKey: {
-      as: 'assignee',
-      name: 'assigned_to',
-      allowNull: false}}),
+    Card.belongsTo(models.user, {
+      foreignKey: {
+        as: 'creator',
+        name: 'created_by',
+        allowNull: false
+      },
+      targetKey: 'name'}),
+    Card.belongsTo(models.user, {
+      foreignKey: {
+        as: 'assignee',
+        name: 'assigned_to',
+        allowNull: false
+      },
+      targetKey: 'name'}),
     Card.belongsTo(models.status, {foreignKey: {
       name: 'status_id',
       allowNull: false}}),
