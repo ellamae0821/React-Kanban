@@ -11,7 +11,7 @@ const CardList = ({cards}) => {
             <CardComponentItem
               id={card.id}
               title={card.title}
-              created_by={card.user.name}
+              created_by={card.created_by}
               assigned_to={card.assigned_to}
               priority={card.priority.name}
               status={card.status.name}

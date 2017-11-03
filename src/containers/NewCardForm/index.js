@@ -23,7 +23,7 @@ class NewCardForm extends Component {
         createdByInput: this.state.createdByInput,
         assignedToInput: this.state.assignedToInput
       }
-      this.props.addCard(addCard)
+      this.props.addCard(newCard)
 
       this.setState({
         titleInput:'',
@@ -58,14 +58,22 @@ class NewCardForm extends Component {
     }
 
     render(){
-      console.log(this.props.addBook)
+      console.log(this.props.addCard)
       return (
         <div className="NewCardForm">
           <h3>{this.props.quote}</h3>
           <form onSubmit={this.handleSubmit.bind(this)}>
-            <input type="text" placeholder="title" value={this.state.titleInput} onChange={this.handleChangeTitle.bind(this)}/>
-            <input type="text" placeholder="author" value={this.state.authorInput} onChange={this.handleChangeAuthor.bind(this)}/>
-            <input type="submit" value="Add Book"/>
+            <h3>Add New Card</h3><br/>
+            <p>Title:</p> <input type="text" placeholder="title" value={this.state.titleInput} onChange={this.handleChangeTitle.bind(this)}/><br/>
+            <p>Priority:</p><select name="priority"/*value={this.state.priorityInput} */ onChange={this.handleChangePriority.bind(this)}>
+              <option value={this.state.priorityInput}>Low</option>
+              <option value="Medium">Medium</option>
+              <option value="High">High</option>
+              <option value="Blocker">Blocker</option>
+            </select><br/>
+            <p>Created By</p><input type="text" placeholder="Created By" value={this.state.createdByInput} onChange={this.handleChangeCreatedBy.bind(this)}/><br/>
+            <h4>Assigned To</h4><input type="text" placeholder="Assigned To" value={this.state.assignedToInput} onChange={this.handleChangeAssignedToInput.bind(this)}/><br/>
+            <input type="submit" value="Add Card"/>
           </form>
         </div>
       )
@@ -74,8 +82,8 @@ class NewCardForm extends Component {
 
 const mapDispatchtoProps = (dispatch)=> {
   return {
-    addBook: (book) => {
-      dispatch(addBook(book))
+    addCard: (card) => {
+      dispatch(addCard(card))
     }
   }
 }
@@ -87,4 +95,4 @@ const ConnectedNewCardForm = connect(
 
 
 
-export default ConnectedNewBookForm;
+export default ConnectedNewCardForm;

@@ -27,8 +27,14 @@
   to { transform: rotate(360deg); }
 }
 
-.eachCardoL {
+/*.eachCardoL {
   display: inline-block;
   width:200px;
   height:150px;
 }
+
+.eachCard {
+  display: inline-block;
+  width:200px;
+  height:150px;
+}*/

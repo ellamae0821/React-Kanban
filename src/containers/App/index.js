@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import {loadCards} from '../../actions/cards'
-import CardComponentAppTitle from '../../components/CardComponentAppTitle'
-import CardComponentItem from '../../components/CardComponentItem'
-import CardList from '../CardList'
+import {loadCards} from '../../actions/cards';
+import CardComponentAppTitle from '../../components/CardComponentAppTitle';
+import CardComponentItem from '../../components/CardComponentItem';
+import CardList from '../CardList';
+import NewCardForm from '../NewCardForm';
 
 import './styles.css';
 
@@ -32,6 +33,7 @@ class App extends Component {
         <div>
           <CardComponentAppTitle title={this.state.appTitle} />
           <CardList cards={this.props.cards}/>
+          <NewCardForm/>
         </div>
       </div>
     );

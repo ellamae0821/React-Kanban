@@ -23,6 +23,21 @@ router.get('/', (req, res) => {
   })
 })
 
+
+router.post('/', (req, res) => {
+  console.log('POST ROUTER - REQBODY:',req)
+  return Card.create({
+    title: req.body.title,
+    priority_id: req.body.priority_id,
+    created_by: req.body.created_by,
+    assigned_to: req.body.assigned_to,
+    status_id: 3
+  })
+  .then((card) => {
+    return res.json(card);
+  });
+});
+
 module.exports = router;
 
 /*

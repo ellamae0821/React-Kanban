@@ -1,5 +1,5 @@
 import {LOAD_CARDS} from '../actions/cards';
-//import {ADD_BOOK} from '../actions/books';
+import {ADD_CARD} from '../actions/cards';
 
 const initialState = [];
 
@@ -10,9 +10,9 @@ const cardList = (state = initialState, action) => {
         console.log(action.cards)
         return [ ...action.cards ]
 
-/*
-      case ADD_BOOK:
-        return [ ...state, action.book ]*/
+
+      case ADD_CARD:
+        return [ ...state, action.card ]
         /*return Object.assign({}, state, {
           bookList: [...state.bookList, action.book]})*/
 
