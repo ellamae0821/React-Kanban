@@ -101,19 +101,6 @@ class NewCardForm extends Component {
                         users={this.props.users}
                         //value={this.state.assignedToInput}
                         changeAssigned={this.handleChangeCreatedBy.bind(this)}/>
-
-              {/*Created By<input
-                        type="text"
-                        placeholder="Created By"
-                        value={this.state.createdByInput}
-                        onChange={this.handleChangeCreatedBy.bind(this)}
-                        />*/}
-              {/*Assigned To<input
-                        type="text"
-                        placeholder="Assigned To"
-                        value={this.state.assignedToInput}
-                        onChange={this.handleChangeAssignedToInput.bind(this)}
-                        />*/}
             </div>
             <div className="formSelect">
               Priority:<select
@@ -126,13 +113,7 @@ class NewCardForm extends Component {
                         <option value="2">High</option>
                         <option value="1">Blocker</option>
               </select>
-              {/*Status: <select
-                                name="status"
-                                value= {this.state.statusInput}
-                                onChange={this.handleChangeAssignedToStatus.bind(this)}
-                                placeholder = >
-                                <option value="3">Queue</option>
-              </select>*/}
+
             </div>
             <input type="submit" value="Add Card"/>
           </form>
