@@ -16,14 +16,12 @@ export const loadCards =(cards) => {
 
 //ACTION SHOULD ONLY RETURN A PAYLOAD & NOT IMPORT ANYTHING(from reducers)
 export const addCard = (card) => {
-/*  console.log('1 FE - ACTIONS - CARD', card)*/
   return function(dispatch){
-
-    /*return*/ addCardsXHR(card).then ((newCard) => {
-
+    return addCardsXHR(card).then( newCard => {
+      console.log("WHAT IS CARD", newCard)
       dispatch({
         type: ADD_CARD,
-        card: card
+        card: newCard
       });
     });
   }

@@ -38,7 +38,7 @@ class App extends Component {
 
         <div>
           <CardComponentAppTitle title={this.state.appTitle} />
-          <NewCardForm/><hr/>
+          {/*<NewCardForm/><hr/>*/}
           <CardList cards={this.props.cards}/>
 
         </div>

@@ -11,10 +11,6 @@ const cardList = (state = initialState, action) => {
 
 
       case ADD_CARD:
-      console.log('JOHN')
-     /* const arrayOfNewCard = [ ...state, action.card ]
-        console.log(arrayOfNewCard);
-        return arrayOfNewCard;*/
         return [ ...state, action.card ]
 
 /*upon editing card splice the cards afterwards, at sequelize options returning = true, plain=true*/

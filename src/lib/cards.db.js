@@ -9,18 +9,20 @@ export const getCardsXHR = () => new Promise((resolve, reject) => {
 })
 
 
-export const addCardsXHR = (card) => new Promise((resolve,
-  reject) => {
-  const xhr = new XMLHttpRequest();
-  xhr.onreadystatechange = function () {
-    if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === "200") {
-      resolve(this.response)
+export const addCardsXHR = (card) => {
+  return new Promise((resolve, reject) => {
+    const xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === XMLHttpRequest.DONE &&
+          xhr.status === 200) {
+        resolve(JSON.parse(xhr.response))
+      }
     }
-  }
-  xhr.open('POST', 'http://localhost:8080/api');
-  xhr.setRequestHeader('Content-type', 'application/json');
-  xhr.send(JSON.stringify(card)); // stringify makes the object to JSON...
-})
+    xhr.open('POST', 'http://localhost:8080/api');
+    xhr.setRequestHeader('Content-type', 'application/json');
+    xhr.send(JSON.stringify(card)); // stringify makes the object to JSON...
+  });
+}
 
 
 
