@@ -3,69 +3,25 @@ module.exports = function(sequelize, DataTypes){
     title: {
       type: DataTypes.STRING,
       allowNull: false,
-    }
+    },
+    created_by_id: DataTypes.INTEGER,
+    assigned_to_id: DataTypes.INTEGER,
+    status_id: DataTypes.INTEGER,
+    priority_id: DataTypes.INTEGER
   },{
     timestamps: false
   })
-/*    priority_type:{
-      type: DataTypes.STRING,
-      references:{
-        model: "priority",
-        key: "id",
-        allowNull: false
-      }
-    },
 
-    status_type:{
-      type: DataTypes.STRING,
-      references:{
-        model: "status",
-        key: "id",
-        allowNull: false
-      }
-    },
-
-    created_by: {
-      type:DataTypes.STRING,
-      references: {
-        model: "users",
-        key: "name",
-        allowNull: false
-      }
-    },
-
-    assigned_to: {
-      type:DataTypes.STRING,
-      references: {
-        model: "users",
-        key: "name",
-        allowNull: false
-      }
-    }
-    //tableName: 'cards'
-  })*/
 
   Card.associate = function(models){
-    Card.belongsTo(models.user, {
-      foreignKey: {
-        as: 'creator',
-        name: 'created_by',
-        allowNull: false
-      },
-      targetKey: 'name'}),
-    Card.belongsTo(models.user, {
-      foreignKey: {
-        as: 'assignee',
-        name: 'assigned_to',
-        allowNull: false
-      },
-      targetKey: 'name'}),
-    Card.belongsTo(models.status, {foreignKey: {
-      name: 'status_id',
-      allowNull: false}}),
-    Card.belongsTo(models.priority, {foreignKey: {
-      name:'priority_id',
-      allowNull: false}})
+    Card.belongsTo(models.user,
+      {foreignKey: 'created_by_id', as: 'creator'}),
+    Card.belongsTo(models.user,
+      {foreignKey: 'assigned_to_id', as: 'assignee'}),
+    Card.belongsTo(models.status,
+      {foreignKey: 'status_id', as: 'status'}),
+    Card.belongsTo(models.priority,
+      {foreignKey: 'priority_id', as: 'priority'})
   }
   return Card;
 }

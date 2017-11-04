@@ -12,10 +12,10 @@ const CardList = ({cards}) => {
             <CardComponentItem
               id={card.id}
               title={card.title}
-              created_by={card.created_by}
-              assigned_to={card.assigned_to}
-              priority={card.priority}
-              status={card.status}
+              created_by={card.creator.name}
+              assigned_to={card.assignee.name}
+              priority={card.priority.name}
+              status={card.status.name}
               key={idx}
             />
           )

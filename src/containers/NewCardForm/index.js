@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-
-import{addCard} from '../../actions/cards'
+import{addCard} from '../../actions/cards';
+import  UserList from '../UserList'
+import {loadUsers} from '../../actions/users'
 
 class NewCardForm extends Component {
   constructor(props){
@@ -12,18 +13,24 @@ class NewCardForm extends Component {
       priorityInput: '',
       createdByInput: '',
       assignedToInput: '',
-      statusInput:''
+      statusInput: "3"
     }
 
   }
+
+  componentDidMount(){
+    this.props.loadUsers()
+  }
+
+
     handleSubmit(event){
       event.preventDefault();
       let newCard = {
         title:this.state.titleInput,
-        priority: this.state.priorityInput || "Low",
-        created_by: this.state.createdByInput,
-        assigned_to: this.state.assignedToInput,
-        status:this.state.assignedToInput || "Queue"
+        priority_id: this.state.priorityInput,
+        created_by_id: this.state.createdByInput,
+        assigned_to_id: this.state.assignedToInput,
+        status_id:this.state.statusInput
       }
       this.props.addCard(newCard)
 
@@ -67,29 +74,53 @@ class NewCardForm extends Component {
     }
 
     render(){
-      console.log(this.props.addCard)
+      console.log('NEWCARDFORM THIS.PROPS.card',this.state)
       return (
         <div className="NewCardForm">
           <h3>{this.props.quote}</h3>
           <form onSubmit={this.handleSubmit.bind(this)}>
-            <h3>Add New Card</h3><br/>
-            <p>Title:</p> <input type="text" placeholder="title" value={this.state.titleInput} onChange={this.handleChangeTitle.bind(this)}/><br/>
-            <p>Priority:</p><select
-              name="priority"
-              value={this.state.priorityInput}
-              onChange={this.handleChangePriority.bind(this)}>
-              <option value="Low">Low</option>
-              <option value="Medium">Medium</option>
-              <option value="High">High</option>
-              <option value="Blocker">Blocker</option>
-            </select><br/>
-            <p>Created By</p><input type="text" placeholder="Created By" value={this.state.createdByInput} onChange={this.handleChangeCreatedBy.bind(this)}/><br/>
-            <h4>Assigned To</h4><input type="text" placeholder="Assigned To" value={this.state.assignedToInput} onChange={this.handleChangeAssignedToInput.bind(this)}/><br/>
-            <p>Status:</p> <select
-            value= {this.state.statusInput}
-            onChange={this.handleChange}>
-            <option value="3">Queue</option>
-          </select>
+            <h3>Add New Card</h3>
+            <div className="formText">
+              Title: <input
+                        type="text"
+                        placeholder="title"
+                        value={this.state.titleInput}
+                        onChange={this.handleChangeTitle.bind(this)}
+                      />
+              <UserList users={this.props.users}/>
+
+              Created By<input
+                        type="text"
+                        placeholder="Created By"
+                        value={this.state.createdByInput}
+                        onChange={this.handleChangeCreatedBy.bind(this)}
+                        />
+              Assigned To<input
+                        type="text"
+                        placeholder="Assigned To"
+                        value={this.state.assignedToInput}
+                        onChange={this.handleChangeAssignedToInput.bind(this)}
+                        />
+            </div>
+            <div className="formSelect">
+              Priority:<select
+                        name="priority"
+                        value={this.state.priorityInput}
+                        onChange={this.handleChangePriority.bind(this)}
+                        defaultValue="Select">
+                        <option value="4">Low</option>
+                        <option value="3">Medium</option>
+                        <option value="2">High</option>
+                        <option value="1">Blocker</option>
+              </select>
+              {/*Status: <select
+                                name="status"
+                                value= {this.state.statusInput}
+                                onChange={this.handleChangeAssignedToStatus.bind(this)}
+                                placeholder = >
+                                <option value="3">Queue</option>
+              </select>*/}
+            </div>
             <input type="submit" value="Add Card"/>
           </form>
         </div>
@@ -97,16 +128,23 @@ class NewCardForm extends Component {
     }
 }
 
+const mapStateToProps = (state) => {
+  return {
+    users: state.userList
+  }
+}
+
 const mapDispatchtoProps = (dispatch)=> {
   return {
     addCard: (card) => {
+      console.log('IN ADDCARD DISPATCH', card)
       dispatch(addCard(card))
     }
   }
 }
 //it should always be 2 arguments , if one is not required then put null
 const ConnectedNewCardForm = connect(
-  null,
+  mapStateToProps,
   mapDispatchtoProps
 )(NewCardForm)
 
