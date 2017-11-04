@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import{addCard} from '../../actions/cards';
-import  UserList from '../UserList'
-import {loadUsers} from '../../actions/users'
+import  UserList from '../UserList';
+import {loadUsers} from '../../actions/users';
 
 class NewCardForm extends Component {
   constructor(props){
@@ -19,7 +19,7 @@ class NewCardForm extends Component {
   }
 
   componentDidMount(){
-    this.props.loadUsers()
+
   }
 
 
@@ -74,7 +74,6 @@ class NewCardForm extends Component {
     }
 
     render(){
-      console.log('NEWCARDFORM THIS.PROPS.card',this.state)
       return (
         <div className="NewCardForm">
           <h3>{this.props.quote}</h3>
@@ -86,21 +85,35 @@ class NewCardForm extends Component {
                         placeholder="title"
                         value={this.state.titleInput}
                         onChange={this.handleChangeTitle.bind(this)}
-                      />
-              <UserList users={this.props.users}/>
+                      /> <br/>
+              {/*Created By:<select
+                        value={this.state.createdByInput}
+                        onChange={this.handleChangeCreatedBy.bind(this)}
+                        users={this.props.users}>
+                        <UserList/>
+                        </select>*/}
+              Assigned To:<UserList
+                        users={this.props.users}
+                        //value={this.state.assignedToInput}
+                        changeAssigned={this.handleChangeAssignedToInput.bind(this)}/>
 
-              Created By<input
+              Created By:<UserList
+                        users={this.props.users}
+                        //value={this.state.assignedToInput}
+                        changeAssigned={this.handleChangeCreatedBy.bind(this)}/>
+
+              {/*Created By<input
                         type="text"
                         placeholder="Created By"
                         value={this.state.createdByInput}
                         onChange={this.handleChangeCreatedBy.bind(this)}
-                        />
-              Assigned To<input
+                        />*/}
+              {/*Assigned To<input
                         type="text"
                         placeholder="Assigned To"
                         value={this.state.assignedToInput}
                         onChange={this.handleChangeAssignedToInput.bind(this)}
-                        />
+                        />*/}
             </div>
             <div className="formSelect">
               Priority:<select
@@ -130,15 +143,17 @@ class NewCardForm extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    users: state.userList
+    users: state.userList,
   }
 }
 
 const mapDispatchtoProps = (dispatch)=> {
   return {
     addCard: (card) => {
-      console.log('IN ADDCARD DISPATCH', card)
       dispatch(addCard(card))
+    },
+    loadUsers:(users) => {
+      dispatch(loadUsers(users));
     }
   }
 }

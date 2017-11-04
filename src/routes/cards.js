@@ -44,21 +44,25 @@ router.post('/', (req, res) => {
     status_id: 3
   })
   .then((card) => {
-    return Card.findOne({include: [{
-        model: User,
-        as: 'creator',
-      }, {
-        model: User,
-        as: 'assignee',
-      }, {
-        model: Status,
-        as: 'status'
-      }, {
-        model: Priority,
-        as: 'priority'
-      }], where: {
+    return Card.findOne({
+      where: {
         id: card.id
-      }
+      },
+      include: [
+        {
+          model: User,
+          as: 'creator',
+        }, {
+          model: User,
+          as: 'assignee',
+        }, {
+          model: Status,
+          as: 'status'
+        }, {
+          model: Priority,
+          as: 'priority'
+        }
+      ]
     })
     .then ( (cardItem) => {
       return res.json(cardItem);
@@ -68,6 +72,9 @@ router.post('/', (req, res) => {
     console.log(err);
   })
 });
+
+//ooor use findById...
+
 
 
 router.get('/users', (req, res) => {
@@ -84,33 +91,3 @@ router.get('/users', (req, res) => {
 
 module.exports = router;
 
-
-/*
-
-router.post('/cards', (req, res) => {
-
-let title = req.body.title;
-let priority = req.body.priority_id;
-let status = 3;
-let assignedTo = req.body.assignedTo;
-
-return Card.create({ title: title, priority: priority, status: status, assigned_to: assignedTo })
-.then(newCard => {
-return res.json(newCard);
-});
-}*/
-/*
-
-router.post('/', (req,res) =>{
-console.log(req.body);
-Card.create( {
-"name" : req.body.name,
-"priority" : req.body.priority,
-"status" : req.body.status,
-"assigned_to" : req.body.assigned_to,
-"created_by" : req.body.created_by,
-})
-.then(res.json.bind(res))
-.catch( res.json.bind(res));
-});
-*/

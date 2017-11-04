@@ -3,7 +3,8 @@ import React from 'react';
 const UserItem = ({id, name}) => {
   return (
 
-  <option value={id} > {name} </option>
+      <option value={id}> {name} </option>
+
   )
 }
 

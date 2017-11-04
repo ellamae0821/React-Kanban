@@ -5,7 +5,6 @@ export const ADD_CARD = 'ADD_CARD';
 export const loadCards =(cards) => {
   return function(dispatch){
     return getCardsXHR().then ((cards) => {
-      console.log('DATA FROM LIB - CARDS:',cards)
       dispatch({
         type: LOAD_CARDS,
         cards: cards
@@ -17,10 +16,10 @@ export const loadCards =(cards) => {
 
 //ACTION SHOULD ONLY RETURN A PAYLOAD & NOT IMPORT ANYTHING(from reducers)
 export const addCard = (card) => {
-  //console.log('1 FE - ACTIONS - CARD', card)
+/*  console.log('1 FE - ACTIONS - CARD', card)*/
   return function(dispatch){
 
-    return addCardsXHR(card).then ((card) => {
+    /*return*/ addCardsXHR(card).then ((newCard) => {
 
       dispatch({
         type: ADD_CARD,
@@ -29,6 +28,14 @@ export const addCard = (card) => {
     });
   }
 }
+
+
+
+
+
+
+
+
 //then import it to reducers & make another case
 /*
 export const deleteCard = (card) => {

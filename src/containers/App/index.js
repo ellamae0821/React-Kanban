@@ -32,7 +32,7 @@ class App extends Component {
 
 
   render() {
-    console.log(this.props.cards)
+
     return (
       <div className="App">
 

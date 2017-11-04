@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const app = express();
 const PORT = process.env.PORT || 8080;
 const db = require ('./models');
-const cardRoute = require('./src/routes/cards.js');
+const allRoutes = require('./src/routes/cards.js');
 
 app.use(function(req, res, next) {
    res.header("Access-Control-Allow-Origin", "*");
@@ -19,7 +19,7 @@ app.use(bodyParser.json());
 
 
 
-app.use('/api', cardRoute);
+app.use('/api', allRoutes);
 
 
 

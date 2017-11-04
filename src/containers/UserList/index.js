@@ -1,17 +1,18 @@
 import React, {Component} from 'react';
-import UserItem from '../../components/UserItem'
+import UserItem from '../../components/UserItem';
 
 
-const UserList = ({users}) => {
+const UserList = ({users, changeAssigned}) => {
   return (
     <div className="eachUser">
-      <select>
+      <select onChange={changeAssigned}>
       {
-        users.map((user, idx) => {
+        users.map((user) => {
           return (
             <UserItem
-              key={idx}
+              id={user.id}
               name={user.name}
+              key={user.id}
             />
           )
         })
@@ -21,6 +22,27 @@ const UserList = ({users}) => {
 
   )
 }
+
+/*const UserList = ({users}) => {
+  return (
+    <div className="eachUser">
+      {
+        users.map((user,idx) => {
+          return (
+            <UserItem
+              id={user.id}
+              name={user.name}
+              key={idx}
+            />
+          )
+        })
+      }
+    </div>
+
+  )
+}
+*/
+
 /*CardList.defaultProps = {
   cards: []
 }*/

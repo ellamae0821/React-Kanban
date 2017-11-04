@@ -7,7 +7,6 @@ const CardList = ({cards}) => {
     <div className='eachCard'>
       {
         cards.map((card, idx) => {
-          console.log('CARDLIST CONTAINER - MAP.CARD',card)
           return (
             <CardComponentItem
               id={card.id}
