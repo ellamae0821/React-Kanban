@@ -1,6 +1,7 @@
-import { getCardsXHR, addCardsXHR } from '../lib/cards.db.js';
+import { getCardsXHR, addCardsXHR, removeCardXHR} from '../lib/cards.db.js';
 export const LOAD_CARDS = 'LOAD_CARDS';
 export const ADD_CARD = 'ADD_CARD';
+export const DEL_CARD = 'DEL_CARD';
 
 export const loadCards =(cards) => {
   return function(dispatch){
@@ -28,24 +29,18 @@ export const addCard = (card) => {
 }
 
 
-
-
-
-
-
-
 //then import it to reducers & make another case
-/*
+
 export const deleteCard = (card) => {
   return function(dispatch){
-    return deleteCardXHR().then ((card) => {
+    return removeCardXHR(card).then ((card) => {
       dispatch({
-        type: DELETE_CARD,
+        type: DEL_CARD,
         card: card
       });
     });
   }
-}*/
+}
 
 /*
 export const editCard = (card) => {

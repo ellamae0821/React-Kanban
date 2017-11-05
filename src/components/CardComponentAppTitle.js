@@ -1,3 +1,5 @@
+//DUMB COMPONENT / STATELESS / FUNCTIONAL
+
 import React from 'react';
 
 const CardComponentAppTitle = ({title}) => {

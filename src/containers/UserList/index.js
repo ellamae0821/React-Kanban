@@ -23,25 +23,6 @@ const UserList = ({users, changeAssigned}) => {
   )
 }
 
-/*const UserList = ({users}) => {
-  return (
-    <div className="eachUser">
-      {
-        users.map((user,idx) => {
-          return (
-            <UserItem
-              id={user.id}
-              name={user.name}
-              key={idx}
-            />
-          )
-        })
-      }
-    </div>
-
-  )
-}
-*/
 
 /*CardList.defaultProps = {
   cards: []

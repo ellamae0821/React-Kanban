@@ -24,9 +24,24 @@ export const addCardsXHR = (card) => {
   });
 }
 
+export const getSingleCardsXHR = (cardId) => new Promise((resolve, reject) => {
+    const xhr = new XMLHttpRequest();
+    xhr.addEventListener('load', function (){
+      resolve(JSON.parse(this.responseText))
+    })
+    xhr.open('GET', `http://localhost:8080/api/${cardId}`);
+    xhr.send()
+})
 
 
 
-
-
-
+export const removeCardXHR = (cardId) => {
+  return new Promise((resolve, reject) => {
+    const xhr = new XMLHttpRequest();
+    xhr.open('DELETE', `http://localhost:8080/api/${cardId}`);
+    xhr.addEventListener('load', function() {
+      resolve(JSON.parse(this.responseText));
+    })
+    xhr.send()
+  })
+}

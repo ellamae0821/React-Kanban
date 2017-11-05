@@ -13,7 +13,7 @@ import {
 import thunk from 'redux-thunk';
 import reducers from './reducers';
 import NewCardForm from './containers/NewCardForm';
-
+import CardItemView from './containers/CardItemView';
 
 const store = createStore(
   reducers,
@@ -26,9 +26,10 @@ ReactDOM.render(
     <Router>
       <div>
         <Link to="/"> Home </Link>
-        <Link to="/new-card"> Add Card </Link>
+        <Link to="/new-card">Add New Card</Link>
         <Route exact path="/" component={App}/>
         <Route path="/new-card" component={NewCardForm}/>
+        <Route path="/:id" component={CardItemView}/>
       </div>
     </Router>
   </Provider>,

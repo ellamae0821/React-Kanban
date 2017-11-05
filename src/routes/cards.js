@@ -75,8 +75,6 @@ router.post('/', (req, res) => {
 
 //ooor use findById...
 
-
-
 router.get('/users', (req, res) => {
   return User.findAll({
     include: [
@@ -88,6 +86,31 @@ router.get('/users', (req, res) => {
       return res.json(users);
     });
 });
+
+router.get('/:id', (req, res) => {
+  console.log(req.params)
+  const cardId = req.params.id
+  console.log('ROUTER GET ajkshdakjshdajkshd',cardId);
+  return Card.findById(cardId)
+  .then( (card) => {
+    res.json(card)
+  })
+})
+
+
+router.delete('/:id', (req, res) => {
+  console.log('FROM DELETE')
+  const cardId = req.params.id
+  return Card.destroy({
+    where: {
+      id: cardId
+    }
+  }) // it will return an array with the value of ....
+  .then( (response) => {
+    res.json({id: cardId})
+  })
+})
+
 
 module.exports = router;
 

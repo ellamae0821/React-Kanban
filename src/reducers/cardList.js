@@ -1,5 +1,6 @@
 import {LOAD_CARDS,
-        ADD_CARD} from '../actions/cards';
+        ADD_CARD,
+        DEL_CARD} from '../actions/cards';
 
 
 const initialState = [];
@@ -14,6 +15,9 @@ const cardList = (state = initialState, action) => {
         return [ ...state, action.card ]
 
 /*upon editing card splice the cards afterwards, at sequelize options returning = true, plain=true*/
+
+      case DEL_CARD:
+        return [ ...state, action.card ]
 
       default:
         return state;
