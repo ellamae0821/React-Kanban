@@ -25,8 +25,9 @@ ReactDOM.render(
   <Provider store={store}>
     <Router>
       <div>
-        <Link to="/"> Home </Link>
-        <Link to="/new-card">Add New Card</Link>
+        <Link to="/"><div className="Nav"> Home </div></Link>
+        <Link to="/new-card"><div className="Nav">Add New Card</div></Link>
+
         <Route exact path="/" component={App}/>
         <Route path="/new-card" component={NewCardForm}/>
         <Route path="/:id" component={CardItemView}/>
